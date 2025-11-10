@@ -18,8 +18,8 @@ The goal is simple:
 ---
 
 ## 🚀 Live Demo  
-🔗 **Website:** [https://your-live-link.com](https://your-live-link.com)  
-💻 **GitHub Repo:** [https://github.com/yourusername/wardrobe-exchange](https://github.com/yourusername/wardrobe-exchange)
+🔗 **Website:** [https://wardrobe-exchange.vercel.app/](https://wardrobe-exchange.vercel.app/)  
+💻 **GitHub Repo:** [https://github.com/Harshjs-Gupta/wardrobeExchange](https://github.com/Harshjs-Gupta/wardrobeExchange)
 
 ---
 
@@ -50,8 +50,8 @@ The goal is simple:
 
 > Add screenshots or short GIFs of your UI here  
 Example:
-![Home Page](https://your-screenshot-link.com)  
-![Exchange Page](https://your-screenshot-link.com)
+![Home Page](https://wardrobe-exchange.vercel.app/Images/HomePage.png)  
+![Exchange Page](https://wardrobe-exchange.vercel.app/Images/ExchangePage.png)
 
 ---
 
