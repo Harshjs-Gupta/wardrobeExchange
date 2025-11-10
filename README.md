@@ -49,8 +49,8 @@ The goal is simple:
 
 > Add screenshots or short GIFs of your UI here  
 Example:
- <img src="wardrobeexchange/public/Image/HomePage.png" alt="Logo" width="200" height="200">  
- <img src="wardrobeexchange/public/Image/ExchangePage.png" alt="Logo" width="200" height="200">
+ <img src="wardrobeexchange/public/Image/HomePage.png" alt="Logo" width="100%" height="100%">  
+ <img src="wardrobeexchange/public/Image/ExchangePage.png" alt="Logo" width="100%" height="100%">
 
 ---
 
