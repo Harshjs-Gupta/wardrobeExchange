@@ -1,8 +1,7 @@
 # 👕♻️ Wardrobe Exchange  
 
 > A community-driven platform to exchange clothes and promote sustainable fashion 🌱  
-
-![Wardrobe Exchange Banner](https://your-banner-image-link.com) <!-- Optional: Add a project banner here -->
+ <!-- Optional: Add a project banner here -->
 
 ---
 
@@ -50,8 +49,8 @@ The goal is simple:
 
 > Add screenshots or short GIFs of your UI here  
 Example:
-![Home Page](https://wardrobe-exchange.vercel.app/Images/HomePage.png)  
-![Exchange Page](https://wardrobe-exchange.vercel.app/Images/ExchangePage.png)
+ <img src="/public/Image/HomePage.png" alt="Logo" width="80" height="80">  
+ <img src="/public/Image/ExchangePage.png" alt="Logo" width="80" height="80">
 
 ---
 
