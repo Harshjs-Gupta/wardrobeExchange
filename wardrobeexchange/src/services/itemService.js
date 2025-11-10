@@ -15,7 +15,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { imageKitService } from "./imageKitService";
+import { LocalStorageService } from "./localStorageService";
 
 // Collection references
 const ITEMS_COLLECTION = "items";
@@ -23,30 +23,23 @@ const USERS_COLLECTION = "users";
 const SWAPS_COLLECTION = "swaps";
 
 export class ItemService {
-  // Create a new item with ImageKit images
+  // Create a new item with localStorage images
   static async createItem(itemData, images, userId) {
     try {
-      // Upload images to ImageKit
-      let imageUrls = [];
+      // Store images in localStorage
+      let imageIds = [];
       if (images && images.length > 0) {
-        try {
-          const uploadedImages = await imageKitService.uploadImages(
-            images,
-            userId
+        // Check if localStorage has enough space
+        if (!LocalStorageService.hasEnoughSpace(images)) {
+          throw new Error(
+            "Not enough localStorage space for images. Please reduce image size or number of images."
           );
-          imageUrls = uploadedImages.map((img) => ({
-            url: img.url,
-            fileId: img.fileId,
-            name: img.name,
-            thumbnailUrl: img.thumbnailUrl,
-          }));
-        } catch (uploadError) {
-          console.error("Error uploading images to ImageKit:", uploadError);
-          throw new Error(`Failed to upload images: ${uploadError.message}`);
         }
+
+        imageIds = await LocalStorageService.storeImages(userId, images);
       }
 
-      // Create item document with image URLs
+      // Create item document with image IDs instead of URLs
       const itemDoc = {
         title: itemData.title,
         description: itemData.description,
@@ -56,7 +49,7 @@ export class ItemService {
         brand: itemData.brand,
         tags: itemData.tags || [],
         userId: userId,
-        imageUrls: imageUrls, // Store ImageKit URLs
+        imageIds: imageIds, // Store image IDs instead of URLs
         status: "available",
         likes: 0,
         likedBy: [],
@@ -65,8 +58,7 @@ export class ItemService {
 
       // Add to Firestore
       const docRef = await addDoc(collection(db, "items"), itemDoc);
-
-      return { id: docRef.id, ...itemDoc, images: imageUrls };
+      return { id: docRef.id, ...itemDoc };
     } catch (error) {
       throw new Error(`Failed to create item: ${error.message}`);
     }
@@ -85,7 +77,7 @@ export class ItemService {
         brand: itemData.brand,
         tags: itemData.tags || [],
         userId: userId,
-        imageUrls: [], // Empty array for no images
+        imageIds: [], // Empty array for no images
         status: "available",
         likes: 0,
         likedBy: [],
@@ -94,13 +86,13 @@ export class ItemService {
 
       // Add to Firestore
       const docRef = await addDoc(collection(db, "items"), itemDoc);
-      return { id: docRef.id, ...itemDoc, images: [] };
+      return { id: docRef.id, ...itemDoc };
     } catch (error) {
       throw new Error(`Failed to create item: ${error.message}`);
     }
   }
 
-  // Get all items with optional filters and load images from ImageKit URLs
+  // Get all items with optional filters and load images from localStorage
   static async getItems(filters = {}) {
     try {
       let q = collection(db, ITEMS_COLLECTION);
@@ -135,17 +127,18 @@ export class ItemService {
       querySnapshot.forEach((doc) => {
         const itemData = { id: doc.id, ...doc.data() };
 
-        // Convert imageUrls to images format for backward compatibility
-        if (itemData.imageUrls && itemData.imageUrls.length > 0) {
-          itemData.images = itemData.imageUrls.map((img, index) => ({
-            id: img.fileId || `img_${index}`,
-            url: img.url,
-            thumbnailUrl: img.thumbnailUrl || img.url,
-            name: img.name || `image_${index + 1}`,
+        // Load images from localStorage for each item
+        if (itemData.imageIds && itemData.imageIds.length > 0) {
+          const images = LocalStorageService.getImagesByIds(
+            itemData.userId,
+            itemData.imageIds
+          );
+          itemData.images = images.map((img) => ({
+            id: img.id,
+            url: img.data, // Use base64 data as URL
+            name: img.name,
+            type: img.type,
           }));
-        } else if (itemData.imageIds) {
-          // Legacy support for old localStorage imageIds
-          itemData.images = [];
         } else {
           itemData.images = [];
         }

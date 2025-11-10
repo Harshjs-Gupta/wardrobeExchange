@@ -287,7 +287,7 @@ export default function DashboardPage() {
                   <div className="relative h-48">
                     <img
                       src={
-                        item.images?.[0]?.url ||
+                        item?.images?.[0]?.url ||
                         "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?w=400&h=300&fit=crop&crop=center"
                       }
                       alt={item.title}
@@ -318,7 +318,7 @@ export default function DashboardPage() {
                       <span className="rounded-full bg-white/10 px-3 py-1">
                         Size: {item.size}
                       </span>
-                      <span className="rounded-full bg-green-500/20 px-3 py-1 text-green-200">
+                      <span className="rounded-full capitalize bg-green-500/20 px-3 py-1 text-green-200">
                         {item.condition}
                       </span>
                     </div>
