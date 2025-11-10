@@ -9,7 +9,7 @@ import {
   SMAAPreset,
 } from "postprocessing";
 
-const Hyperspeed = ({
+const HyperSpeed = ({
   effectOptions = {
     onSpeedUp: () => {},
     onSlowDown: () => {},
@@ -1187,4 +1187,4 @@ const Hyperspeed = ({
   return <div id="lights" className="w-full h-full" ref={hyperspeed}></div>;
 };
 
-export default Hyperspeed;
+export default HyperSpeed;

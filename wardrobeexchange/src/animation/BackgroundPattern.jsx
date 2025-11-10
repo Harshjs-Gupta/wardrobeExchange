@@ -1,14 +1,13 @@
 "use client";
+import HyperSpeed from "@/components/BitsComponents/LineLight";
 import React from "react";
-import { motion } from "framer-motion";
-import Hyperspeed from "@/components/BitsComponents/HyperSpeed";
 
 export default function BackgroundPattern() {
   return (
     <>
       {/* Background Pattern */}
       <div className="absolute inset-0">
-        <Hyperspeed
+        <HyperSpeed
           effectOptions={{
             onSpeedUp: () => {},
             onSlowDown: () => {},
