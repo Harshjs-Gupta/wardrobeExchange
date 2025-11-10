@@ -92,14 +92,6 @@ body {
   background: linear-gradient(180deg, #a855f7 0%, #f472b6 100%);
 }
 
-/* Simplified focus states */
-input:focus,
-button:focus,
-a:focus {
-  outline: 2px solid rgba(139, 92, 246, 0.6);
-  outline-offset: 2px;
-}
-
 /* Custom button hover effects */
 .btn-hover {
   position: relative;
@@ -125,4 +117,3 @@ a:focus {
 .btn-hover:hover::before {
   left: 100%;
 }
-

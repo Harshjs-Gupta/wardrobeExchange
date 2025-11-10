@@ -25,6 +25,7 @@ import EnhanceState from "@/layout/EnhanceState";
 import FeaturesCard from "@/components/FeaturesCard";
 import LightRaysUsage from "@/components/LightRaysUsage";
 import { useAuth } from "@/context/AuthContext";
+import { FaUser } from "react-icons/fa";
 
 export default function Home() {
   const { user, userProfile } = useAuth();
@@ -106,12 +107,21 @@ export default function Home() {
               emoji={<ArrowRight className="ml-3 w-6 h-6 " />}
               className="px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center transform hover:-translate-y-1"
             />
-            <Button
-              text="Browse Items"
-              path="/browse"
-              emoji={<GlobeIcon className="ml-3 w-6 h-6 " />}
-              className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl"
-            />
+            {user ? (
+              <Button
+                text="Browse Items"
+                path="/browse"
+                emoji={<GlobeIcon className="ml-3 w-6 h-6 " />}
+                className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl"
+              />
+            ) : (
+              <Button
+                text="Login First"
+                path="/auth"
+                emoji={<FaUser className="ml-3 w-6 h-6 " />}
+                className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-2xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl"
+              />
+            )}
             <Button
               text="List an Item"
               path="/add-item"
