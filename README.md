@@ -17,8 +17,7 @@ The goal is simple:
 ---
 
 ## 🚀 Live Demo  
-🔗 **Website:** [https://wardrobe-exchange.vercel.app/](https://wardrobe-exchange.vercel.app/)  
-💻 **GitHub Repo:** [https://github.com/Harshjs-Gupta/wardrobeExchange](https://github.com/Harshjs-Gupta/wardrobeExchange)
+🔗 **Website:** [https://wardrobe-exchange.vercel.app/](https://wardrobe-exchange.vercel.app/)
 
 ---
 
